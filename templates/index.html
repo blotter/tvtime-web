@@ -1,0 +1,202 @@
+$def with (name)
+<html>
+    <head>
+        <meta http-equiv="refresh" content="5" >
+        <title>tvtime-web</title>
+        <style>
+            .error {
+                color: red;
+            }
+            #left {
+                float: left;
+            }
+            #right {
+                float: right;
+            }
+            #none {
+                float: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="left" style="clear:right;">
+            <img src="/images/current.png" />
+        <!--
+        </div>
+        <div id="left">
+        -->
+            <form method="post" action="/">
+                <div>
+                    <input type="submit" id="one" name="one" value="1">
+                    <input type="submit" id="two" name="two" value="2">
+                    <input type="submit" id="three" name="three" value="3">
+                </div>
+                <div>
+                    <input type="submit" id="four" name="four" value="4">
+                    <input type="submit" id="five" name="five" value="5">
+                    <input type="submit" id="six" name="six" value="6">
+                </div>
+                <div>
+                    <input type="submit" id="seven" name="seven" value="7">
+                    <input type="submit" id="eight" name="eight" value="8">
+                    <input type="submit" id="nine" name="nine" value="9">
+                </div>
+                <div>
+                    <input type="submit" id="zero" name="zero" value="0">
+                    <input type="submit" id="zero" name="zero" value="0">
+                    <input type="submit" id="zero" name="zero" value="0">
+                </div>
+                <div>
+                    <input type="submit" id="prev" name="prev" value="&lt;">
+                    <input type="submit" id="next" name="next" value="&gt;">
+                </div>
+                <!--
+                <div>
+                    <input class="volume" type="submit" id="less" name="less" value="-">
+                    <input class="volume" type="submit" id="more" name="more" value="+">
+                </div>
+                -->
+                <div>
+                    <input type="submit" id="mute" name="mute" value="Mute">
+                    <input type="submit" id="fullscreen" name="fullscreen" value="Fullscreen">
+                </div>
+                <div>
+                    <input type="submit" id="quit" name="quit" value="Quit">
+                    <input type="submit" id="screenshot" name="screenshot" value="Screenshot">
+                </div>
+        </div>
+        <div id="left">
+                <table>
+                    <tr>
+                        <th>Sender ID</th>
+                        <th>Sender Name</th>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="ard" name="ard" value="5"></td>
+                        <td><input type="submit" id="ard" name="ard" value="ARD"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="zdf" name="zdf" value="6"></td>
+                        <td><input type="submit" id="zdf" name="zdf" value="ZDF"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="rbb" name="rbb" value="7"></td>
+                        <td><input type="submit" id="rbb" name="rbb" value="rbb"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="vox" name="vox" value="8"></td>
+                        <td><input type="submit" id="vox" name="vox" value="VOX"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="kika" name="kika" value="9"></td>
+                        <td><input type="submit" id="kika" name="kika" value="KIKA"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="ntv" name="ntv" value="10"></td>
+                        <td><input type="submit" id="ntv" name="ntv" value="n-tv"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="n24" name="n24" value="11"></td>
+                        <td><input type="submit" id="n24" name="n24" value="N24"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="mdr" name="mdr" value="12"></td>
+                        <td><input type="submit" id="mdr" name="mdr" value="mdr"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="qvc" name="qvc" value="18"></td>
+                        <td><input type="submit" id="qvc" name="qvc" value="QVC"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="rtl" name="rtl" value="19"></td>
+                        <td><input type="submit" id="rtl" name="rtl" value="RTL"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="sat" name="sat" value="20"></td>
+                        <td><input type="submit" id="sat" name="sat" value="Sat.1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="ltv" name="ltv" value="21"></td>
+                        <td><input type="submit" id="ltv" name="ltv" value="LTV"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="sport" name="sport" value="22"></td>
+                        <td><input type="submit" id="sport" name="sport" value="Sport 1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="pro7" name="pro7" value="23"></td>
+                        <td><input type="submit" id="pro7" name="pro7" value="ProSieben"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="rtl2" name="rtl2" value="24"></td>
+                        <td><input type="submit" id="rtl2" name="rtl2" value="RTL2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="kabel1" name="kabel1" value="25"></td>
+                        <td><input type="submit" id="kabel1" name="kabel1" value="Kabel 1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="super" name="super" value="26"></td>
+                        <td><input type="submit" id="super" name="super" value="Super RTL"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="br" name="br" value="27"></td>
+                        <td><input type="submit" id="br" name="br" value="BR"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="3sat" name="3sat" value="28"></td>
+                        <td><input type="submit" id="3sat" name="3sat" value="3sat"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="tele5" name="tele5" value="29"></td>
+                        <td><input type="submit" id="tele5" name="tele5" value="Tele 5"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="ndr" name="ndr" value="30"></td>
+                        <td><input type="submit" id="ndr" name="ndr" value="NDR"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="viva" name="viva" value="31"></td>
+                        <td><input type="submit" id="viva" name="viva" value="VIVA"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="nick" name="nick" value="32"></td>
+                        <td><input type="submit" id="nick" name="nick" value="nickelodeon"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="astro" name="astro" value="33"></td>
+                        <td><input type="submit" id="astro" name="astro" value="AstroTV"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="arte" name="arte" value="34"></td>
+                        <td><input type="submit" id="arte" name="arte" value="arte"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="juwelo" name="juwelo" value="35"></td>
+                        <td><input type="submit" id="juwelo" name="juwelo" value="Juwelo"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="hse24" name="hse24" value="47"></td>
+                        <td><input type="submit" id="hse24" name="hse24" value="HSE24"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="mdr" name="mdr" value="69"></td>
+                        <td><input type="submit" id="mdr" name="mdr" value="mdr"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="eurosport" name="eurosport" value="92"></td>
+                        <td><input type="submit" id="eurosport" name="eurosport" value="eurosport"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="phoenix" name="phoenix" value="93"></td>
+                        <td><input type="submit" id="phoenix" name="phoenix" value="PHOENIX"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="dmax" name="dmax" value="94"></td>
+                        <td><input type="submit" id="dmax" name="dmax" value="DMAX"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
