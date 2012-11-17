@@ -3,6 +3,36 @@ import subprocess
 import sys
 import web
 
+urls = (
+    '/images/current.png'   , 'currentPNG',
+    '/.*'                   , 'index',
+)
+
+render = web.template.render('templates/')
+
+commands = {
+        'prev'      : 'DOWN',
+        'next'      : 'UP',
+        'less'      : 'LEFT',
+        'more'      : 'RIGHT',
+        'mute'      : 'TOGGLE_MUTE',
+        'fullscreen': 'TOGGLE_FULLSCREEN',
+        'quit'      : 'QUIT',
+        '0'         : 'CHANNEL_0',
+        '1'         : 'CHANNEL_1',
+        '2'         : 'CHANNEL_2',
+        '3'         : 'CHANNEL_3',
+        '4'         : 'CHANNEL_4',
+        '5'         : 'CHANNEL_5',
+        '6'         : 'CHANNEL_6',
+        '7'         : 'CHANNEL_7',
+        '8'         : 'CHANNEL_8',
+        '9'         : 'CHANNEL_9',
+        'screenshot': 'SCREENSHOT',
+        }
+
+path = "/home/janus/Projects/python/webapp/images/current.png"
+
 def setup_xmltv_environ():
     os.environ.pop('LC_ALL', None)
     os.environ['LC_MESSAGES'] = 'C'
@@ -32,66 +62,21 @@ def run_xmltv_command(cmd, arg=None):
         return str(e)
 
 def check_xmltv():
-    return run_xmltv_command('SCREENSHOT', '/home/janus/Projects/python/webapp/images/current.png')
+    return run_xmltv_command('SCREENSHOT', path)
 
-urls = (
-    '/images/current.png'   , 'currentPNG',
-    '/.*'                   , 'index',
-)
+def numToChannelId(num):
+    output = ""
+    for i in range(0, len(num):
+        if i != " ":
+            try:
+                output += "%s " % commands[num[i]]
+            except:
+                output += ""
+    if len(num) > 1:
+        return "%sENTER" % output
+    else:
+        return "%s" % output
 
-render = web.template.render('templates/')
-
-commands = {
-        'prev'      : 'DOWN',
-        'next'      : 'UP',
-        'less'      : 'LEFT',
-        'more'      : 'RIGHT',
-        'mute'      : 'TOGGLE_MUTE',
-        'fullscreen': 'TOGGLE_FULLSCREEN',
-        'quit'      : 'QUIT',
-        'zero'      : 'CHANNEL_0',
-        'one'       : 'CHANNEL_1',
-        'two'       : 'CHANNEL_2',
-        'three'     : 'CHANNEL_3',
-        'four'      : 'CHANNEL_4',
-        'five'      : 'CHANNEL_5',
-        'six'       : 'CHANNEL_6',
-        'seven'     : 'CHANNEL_7',
-        'eight'     : 'CHANNEL_8',
-        'nine'      : 'CHANNEL_9',
-        'ard'       : 'CHANNEL_5 ENTER',
-        'zdf'       : 'CHANNEL_6 ENTER',
-        'rbb'       : 'CHANNEL_7 ENTER',
-        'vox'       : 'CHANNEL_8 ENTER',
-        'kika'      : 'CHANNEL_9 ENTER',
-        'ntv'       : 'CHANNEL_1 CHANNEL_0 ENTER',
-        'n24'       : 'CHANNEL_1 CHANNEL_1 ENTER',
-        'mdr'       : 'CHANNEL_1 CHANNEL_2 ENTER',
-        'qvc'       : 'CHANNEL_1 CHANNEL_8 ENTER',
-        'rtl'       : 'CHANNEL_1 CHANNEL_9 ENTER',
-        'sat'       : 'CHANNEL_2 CHANNEL_0 ENTER',
-        'ltv'       : 'CHANNEL_2 CHANNEL_1 ENTER',
-        'sport'     : 'CHANNEL_2 CHANNEL_2 ENTER',
-        'pro7'      : 'CHANNEL_2 CHANNEL_3 ENTER',
-        'rtl2'      : 'CHANNEL_2 CHANNEL_4 ENTER',
-        'kabel1'    : 'CHANNEL_2 CHANNEL_5 ENTER',
-        'super'     : 'CHANNEL_2 CHANNEL_6 ENTER',
-        'br'        : 'CHANNEL_2 CHANNEL_7 ENTER',
-        '3sat'      : 'CHANNEL_2 CHANNEL_8 ENTER',
-        'tele5'     : 'CHANNEL_2 CHANNEL_9 ENTER',
-        'ndr'       : 'CHANNEL_3 CHANNEL_0 ENTER',
-        'viva'      : 'CHANNEL_3 CHANNEL_1 ENTER',
-        'nick'      : 'CHANNEL_3 CHANNEL_2 ENTER',
-        'astro'     : 'CHANNEL_3 CHANNEL_3 ENTER',
-        'arte'      : 'CHANNEL_3 CHANNEL_4 ENTER',
-        'juwelo'    : 'CHANNEL_3 CHANNEL_5 ENTER',
-        'hse24'     : 'CHANNEL_4 CHANNEL_7 ENTER',
-        'mdr'       : 'CHANNEL_6 CHANNEL_9 ENTER',
-        'eurosport' : 'CHANNEL_9 CHANNEL_2 ENTER',
-        'phoenix'   : 'CHANNEL_9 CHANNEL_3 ENTER',
-        'dmax'      : 'CHANNEL_9 CHANnel_4 ENTER',
-        'screenshot': 'SCREENSHOT /home/janus/Projects/python/webapp/images/current.png',
-        }
 
 class index:
     def GET(self):
@@ -103,10 +88,12 @@ class index:
         action = iPost.keys()[0]
         if action in commands:
             if action == "screenshot":
-                name = run_xmltv_command(commands[action].split(" ")[0], commands[action].split(" ")[1])
+                name = run_xmltv_command(commands[action], path)
             else:
                 name = run_xmltv_command(commands[action])
-            return render.index(name)
+        else:
+            name = run_xmltv_command(numToChannelId(action))
+        return render.index(name)
 
 class currentPNG:
     def GET(self):
