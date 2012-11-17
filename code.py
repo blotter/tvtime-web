@@ -66,7 +66,7 @@ def check_xmltv():
 
 def numToChannelId(num):
     output = ""
-    for i in range(0, len(num):
+    for i in range(0, len(num)):
         if i != " ":
             try:
                 output += "%s " % commands[num[i]]
